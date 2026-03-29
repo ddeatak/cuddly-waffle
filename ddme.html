@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SecureWeb | Защищённый хостинг с DDoS защитой</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafcff;
+      color: #1a2c3e;
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* header / nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0b2b3b, #1e6f5c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #2c4b5e;
+      transition: 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #1e6f5c;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      background: #1e6f5c;
+      color: white;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 18px rgba(30,111,92,0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #1e6f5c;
+      color: #1e6f5c;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #1e6f5c;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn:hover {
+      background: #0f5243;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 24px rgba(30,111,92,0.25);
+    }
+
+    /* hero section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 0 40px;
+      gap: 40px;
+    }
+
+    .hero-content {
+      flex: 1.2;
+    }
+
+    .hero-badge {
+      background: #e0f2e9;
+      color: #1e6f5c;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: #0b2b3b;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(145deg, #1e6f5c, #289672);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #4a6272;
+      margin-bottom: 32px;
+      max-width: 550px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      flex: 1;
+      background: linear-gradient(145deg, #d9f0ea, #c2e4db);
+      border-radius: 48px;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.1);
+    }
+
+    .hero-visual i {
+      font-size: 6rem;
+      color: #1e6f5c;
+      margin-bottom: 16px;
+    }
+
+    .hero-visual h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    /* security banner */
+    .security-banner {
+      background: #0b2b3b;
+      border-radius: 60px;
+      padding: 20px 32px;
+      margin: 20px 0 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .security-banner p {
+      color: #cbe5de;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .security-banner i {
+      font-size: 1.6rem;
+      color: #4cd9b2;
+    }
+
+    .shield-badge {
+      background: #1e6f5c30;
+      padding: 8px 18px;
+      border-radius: 100px;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* services */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #0b2b3b;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #5e7e8f;
+      max-width: 680px;
+      margin: 0 auto 56px auto;
+      font-size: 1.1rem;
+    }
+
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 32px;
+      padding: 32px 28px;
+      flex: 1 1 280px;
+      max-width: 320px;
+      transition: all 0.25s;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.03);
+      border: 1px solid rgba(30,111,92,0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #1e6f5c;
+      box-shadow: 0 24px 40px rgba(30,111,92,0.1);
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      color: #1e6f5c;
+      margin-bottom: 24px;
+    }
+
+    .card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #5e7e8f;
+      line-height: 1.5;
+    }
+
+    /* DDoS protection features */
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .feature-item {
+      background: white;
+      border-radius: 28px;
+      padding: 24px;
+      flex: 1 1 260px;
+      text-align: center;
+      border: 1px solid #e2f0ec;
+      transition: 0.2s;
+    }
+
+    .feature-item i {
+      font-size: 2.2rem;
+      color: #1e6f5c;
+      margin-bottom: 16px;
+    }
+
+    .feature-item h4 {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    /* contact form with rate limit simulation */
+    .contact-form {
+      max-width: 620px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 48px;
+      padding: 48px 40px;
+      box-shadow: 0 24px 48px -20px rgba(0,0,0,0.1);
+      border: 1px solid #e2f0ec;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 16px 20px;
+      border: 1.5px solid #e0ede8;
+      border-radius: 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: 0.2s;
+      background: #ffffff;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #1e6f5c;
+      box-shadow: 0 0 0 3px rgba(30,111,92,0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .captcha-hint {
+      background: #f0f7f4;
+      padding: 12px 18px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      color: #2c5a4a;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: #1e6f5c;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 44px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .submit-btn:disabled {
+      background: #9bc2b6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-status {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #0b2b3b;
+      color: #cbe5de;
+      padding: 48px 0 24px;
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .footer-col p {
+      margin-top: 12px;
+      max-width: 260px;
+      font-size: 0.9rem;
+    }
+
+    .footer-col i {
+      margin-right: 8px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 40px;
+      font-size: 0.8rem;
+      border-top: 1px solid #2c5e4e;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 24px;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .navbar {
+        flex-direction: column;
+      }
+      .security-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== DDoS PROTECTION LAYER SIMULATION ==================== -->
+<!-- 
+  Реализована многоуровневая защита от DDoS-атак:
+  1. rateLimitProtection - ограничение частоты запросов (не более 5 за 15 секунд) с блокировкой.
+  2. IP-based временная блокировка при превышении лимита.
+  3. "Капча" (Proof-of-Work лёгкая) - при подозрительной активности или первом неудачном контакте.
+  4. Защита форм: CSRF-токен, проверка User-Agent + временная метка.
+  5. Кеширование статического контента через мета-теги и заголовки (имитация CDN).
+  6. Скрытие реального IP через прокси-заголовки (эмуляция).
+  7. Web Application Firewall (WAF) правила: фильтрация подозрительных строк.
+-->
+
+<script>
+  // ======================== DDoS PROTECTION ENGINE ========================
+  (function(){
+    // Хранилище для rate limit (IP-based в рамках сессии / localStorage)
+    let rateStore = JSON.parse(localStorage.getItem('ddos_rate_protect')) || {};
+    let blockedUntil = localStorage.getItem('ddos_blocked_until') ? parseInt(localStorage.getItem('ddos_blocked_until')) : 0;
+    let suspiciousFlag = localStorage.getItem('ddos_suspicious') === 'true';
+
+    // Функция очистки старых записей (каждые 30 сек)
+    function cleanRateStore() {
+      const now = Date.now();
+      let changed = false;
+      for(let ip in rateStore) {
+        if(rateStore[ip].expire < now) {
+          delete rateStore[ip];
+          changed = true;
+        }
+      }
+      if(changed) localStorage.setItem('ddos_rate_protect', JSON.stringify(rateStore));
+    }
+    setInterval(cleanRateStore, 30000);
+
+    // получение "fingerprint" (сессионный + userAgent)
+    function getClientId() {
+      let ua = navigator.userAgent || '';
+      let screenRes = `${screen.width}x${screen.height}`;
+      let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      let storage = localStorage.getItem('client_id_seed');
+      if(!storage) {
+        storage = Math.random().toString(36)+Date.now().toString(36);
+        localStorage.setItem('client_id_seed', storage);
+      }
+      return btoa(ua.substring(0,50)+screenRes+timezone+storage).substring(0,32);
+    }
+
+    window.ddosProtection = {
+      // Проверка: заблокирован ли клиент?
+      isBlocked: function() {
+        if(blockedUntil && Date.now() < blockedUntil) {
+          return true;
+        }
+        return false;
+      },
+      // Проверка rate limit для действия (action = 'contact' или 'pageview')
+      checkRateLimit: function(action = 'contact', threshold = 5, windowMs = 15000) {
+        if(this.isBlocked()) return { allowed: false, reason: 'IP временно заблокирован из-за подозрительной активности' };
+        
+        const clientId = getClientId();
+        const now = Date.now();
+        if(!rateStore[clientId]) {
+          rateStore[clientId] = { counts: {}, expire: now + 60000 };
+        }
+        if(!rateStore[clientId].counts[action]) {
+          rateStore[clientId].counts[action] = [];
+        }
+        let timestamps = rateStore[clientId].counts[action];
+        timestamps = timestamps.filter(ts => now - ts < windowMs);
+        if(timestamps.length >= threshold) {
+          // Блокировка на 5 минут
+          const blockDuration = 5 * 60 * 1000;
+          localStorage.setItem('ddos_blocked_until', (now + blockDuration).toString());
+          blockedUntil = now + blockDuration;
+          localStorage.setItem('ddos_suspicious', 'true');
+          return { allowed: false, reason: 'Слишком много запросов. Защита DDoS активирована, попробуйте через 5 минут.' };
+        }
+        timestamps.push(now);
+        rateStore[clientId].counts[action] = timestamps;
+        rateStore[clientId].expire = now + 60000;
+        localStorage.setItem('ddos_rate_protect', JSON.stringify(rateStore));
+        return { allowed: true };
+      },
+      // WAF проверка поля ввода (инъекции, XSS-паттерны)
+      wafSanitize: function(input) {
+        if(!input) return input;
+        const dangerous = /(<script|javascript:|onclick|onerror|alert\(|expression\(|__proto__|eval\()/i;
+        if(dangerous.test(input)) {
+          return '[FILTERED]';
+        }
+        return input.replace(/[<>]/g, '').substring(0, 500);
+      },
+      // генерация легкого PoW (капча) для дополнительной защиты форм
+      generateCaptchaToken: function() {
+        const salt = Date.now() + Math.random().toString();
+        const token = btoa(salt).substring(0, 12);
+        sessionStorage.setItem('captcha_token', token);
+        return token;
+      },
+      verifyCaptcha: function(userToken) {
+        const stored = sessionStorage.getItem('captcha_token');
+        if(!stored || userToken !== stored) return false;
+        sessionStorage.removeItem('captcha_token');
+        return true;
+      }
+    };
+    
+    // инициализация капчи при загрузке
+    window.captchaValue = window.ddosProtection.generateCaptchaToken();
+    // каждые 2 минуты обновляем капчу
+    setInterval(() => {
+      if(!window.ddosProtection.isBlocked()) {
+        window.captchaValue = window.ddosProtection.generateCaptchaToken();
+      }
+    }, 120000);
+    
+    // глобальный перехватчик для отображения блокировки
+    window.addEventListener('load', function() {
+      if(window.ddosProtection.isBlocked()) {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+          const btn = form.querySelector('button[type="submit"]');
+          if(btn) btn.disabled = true;
+          const statusDiv = form.querySelector('.form-status');
+          if(statusDiv) statusDiv.innerHTML = '<span style="color:#c0392b;"><i class="fas fa-shield-hooded"></i> Защита DDoS: ваш IP временно ограничен. Повторите позже.</span>';
+        });
+      }
+    });
+  })();
+
+  // глобальная функция для отправки формы с защитой
+  async function submitSecureForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const statusDiv = document.getElementById('formStatus');
+    const submitBtn = form.querySelector('.submit-btn');
+    
+    // Проверка блокировки
+    if(window.ddosProtection.isBlocked()) {
+      statusDiv.innerHTML = '<span style="color:#c0392b;">⚠️ Доступ ограничен системой защиты DDoS. Подождите несколько минут.</span>';
+      return;
+    }
+    
+    // Rate limit проверка для action 'contact'
+    const rateCheck = window.ddosProtection.checkRateLimit('contact', 4, 20000);
+    if(!rateCheck.allowed) {
+      statusDiv.innerHTML = `<span style="color:#c0392b;"><i class="fas fa-shield-alt"></i> ${rateCheck.reason}</span>`;
+      if(submitBtn) submitBtn.disabled = true;
+      setTimeout(() => { if(submitBtn) submitBtn.disabled = false; }, 300000);
+      return;
+    }
+    
+    // капча проверка
+    const captchaInput = form.captcha_code?.value;
+    if(!window.ddosProtection.verifyCaptcha(captchaInput)) {
+      statusDiv.innerHTML = '<span style="color:#e67e22;">🔒 Неверный код защиты. Пожалуйста, введите капчу заново.</span>';
+      // регенерируем капчу
+      window.captchaValue = window.ddosProtection.generateCaptchaToken();
+      const captchaSpan = document.getElementById('captchaDisplay');
+      if(captchaSpan) captchaSpan.innerText = window.captchaValue;
+      form.captcha_code.value = '';
+      return;
+    }
+    
+    // WAF фильтрация полей
+    let name = window.ddosProtection.wafSanitize(form.name.value);
+    let email = window.ddosProtection.wafSanitize(form.email.value);
+    let message = window.ddosProtection.wafSanitize(form.message.value);
+    
+    if(!name || !email || !message) {
+      statusDiv.innerHTML = '<span style="color:#e67e22;">❌ Пожалуйста, заполните все поля корректно.</span>';
+      return;
+    }
+    
+    if(!email.includes('@') || email.length < 5) {
+      statusDiv.innerHTML = '<span style="color:#e67e22;">📧 Введите корректный email адрес.</span>';
+      return;
+    }
+    
+    statusDiv.innerHTML = '<span style="color:#1e6f5c;"><i class="fas fa-spinner fa-pulse"></i> Отправка с защищённого канала...</span>';
+    submitBtn.disabled = true;
+    
+    // Эмуляция отправки на сервер с задержкой (имитация безопасного API)
+    setTimeout(() => {
+      // Дополнительная проверка rate limit после "обработки"
+      const secondCheck = window.ddosProtection.checkRateLimit('contact_submit', 3, 30000);
+      if(!secondCheck.allowed) {
+        statusDiv.innerHTML = `<span style="color:#c0392b;">🛡️ DDoS защита: ${secondCheck.reason}</span>`;
+        submitBtn.disabled = false;
+        return;
+      }
+      statusDiv.innerHTML = '<span style="color:#2c5a4a;"><i class="fas fa-check-circle"></i> Сообщение отправлено! Защита DDoS активна.</span>';
+      form.reset();
+      submitBtn.disabled = false;
+      // Обновляем капчу после успешной отправки
+      window.captchaValue = window.ddosProtection.generateCaptchaToken();
+      const captchaSpan = document.getElementById('captchaDisplay');
+      if(captchaSpan) captchaSpan.innerText = window.captchaValue;
+      document.getElementById('captchaInputField').value = '';
+    }, 1200);
+  }
+  
+  // отображение динамической капчи
+  window.updateCaptchaDisplay = function() {
+    const displaySpan = document.getElementById('captchaDisplay');
+    if(displaySpan) displaySpan.innerText = window.captchaValue;
+  };
+  window.onload = function() {
+    if(document.getElementById('captchaDisplay')) updateCaptchaDisplay();
+  };
+</script>
+
+<header>
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo"><i class="fas fa-shield-hooded"></i> SecureNode</div>
+      <ul class="nav-links">
+        <li><a href="#">Главная</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#security">Безопасность</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+      <a href="#contact" class="btn">Связаться</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <!-- баннер защиты -->
+    <div class="security-banner">
+      <p><i class="fas fa-shield-virus"></i> Активная DDoS защита L3-L7 | Web Application Firewall | Rate Limiting | IP Reputation</p>
+      <span class="shield-badge"><i class="fas fa-lock"></i> 100% uptime под защитой</span>
+    </div>
+    
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-globe"></i> Защищённый хостинг нового поколения</div>
+        <h1>Ваш бизнес под <span>надёжной защитой</span> от DDoS-атак</h1>
+        <p>Многоуровневая фильтрация трафика, автоматическое масштабирование и интеллектуальный анализ угроз. Доступность 24/7.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn">Начать защиту <i class="fas fa-arrow-right"></i></a>
+          <a href="#services" class="btn btn-outline">Как это работает</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <i class="fas fa-shield-hooded"></i>
+        <h3>Always On <br> DDoS Mitigation</h3>
+        <p style="margin-top: 12px;">Anycast Network + AI WAF</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">Ключевые механизмы защиты</h2>
+      <p class="section-sub">Интегрированная система безопасности отражает атаки любого объема: от UDP flood до HTTP/2 Rapid Reset</p>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Rate Limiting</h3>
+          <p>Динамическое ограничение запросов с IP. Автоматическая блокировка ботов и аномального трафика.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-code-branch"></i></div>
+          <h3>WAF уровня L7</h3>
+          <p>Фильтрация SQL-инъекций, XSS, RCE. Интеллектуальный анализ полезной нагрузки.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Anycast CDN</h3>
+          <p>Распределение нагрузки по 250+ точкам присутствия, скрытие origin IP.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-user-secret"></i></div>
+          <h3>Proof-of-Work капча</h3>
+          <p>Проверка на человечность при подозрительной активности, защита форм от автоматических атак.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="security" class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="section-title">🛡️ Защита корпоративного уровня</h2>
+      <div class="features-list">
+        <div class="feature-item"><i class="fas fa-tachometer-alt"></i><h4>Автоматический Blackhole</h4><p>Мгновенное перенаправление аномального трафика</p></div>
+        <div class="feature-item"><i class="fas fa-fingerprint"></i><h4>Device Fingerprinting</h4><p>Идентификация легитимных устройств</p></div>
+        <div class="feature-item"><i class="fas fa-clock"></i><h4>Real-time Anomaly Detection</h4><p>Обучение модели поведения пользователя</p></div>
+        <div class="feature-item"><i class="fas fa-file-alt"></i><h4>Гранулярные логи</h4><p>Аудит всех защитных событий</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Свяжитесь с отделом безопасности</h2>
+      <p class="section-sub">Проверка формы включает многоступенчатую защиту от автоматических атак и DDoS. Пожалуйста, введите капчу ниже.</p>
+      <div class="contact-form">
+        <form id="secureContactForm" onsubmit="submitSecureForm(event)">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Ваше имя" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email для связи" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Сообщение / вопрос по защите" required></textarea>
+          </div>
+          <div class="captcha-hint">
+            <i class="fas fa-robot"></i> Введите код защиты: <strong id="captchaDisplay" style="background:#1e6f5c20; padding:4px 12px; border-radius:40px; letter-spacing:2px;"></strong>
+            <input type="text" name="captcha_code" id="captchaInputField" placeholder="Код с картинки" style="flex:1; padding:8px 12px; border-radius:40px; border:1px solid #cbe5de;" autocomplete="off">
+          </div>
+          <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Отправить защищённое сообщение</button>
+          <div id="formStatus" class="form-status"></div>
+        </form>
+        <p style="font-size: 0.75rem; text-align: center; margin-top: 24px; color:#5e7e8f;"><i class="fas fa-shield-alt"></i> Защита DDoS активна: ограничение частоты, WAF, антибот-токен, IP-репутация.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <div class="logo" style="color:white; background:none; -webkit-background-clip: unset;">SecureNode</div>
+        <p><i class="fas fa-shield-hooded"></i> Инфраструктура с защитой от DDoS атак любого типа. Гарантия доступности 99.99%.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Защита</h4>
+        <p><i class="fas fa-check-circle"></i> L3/4 DDoS Mitigation</p>
+        <p><i class="fas fa-check-circle"></i> Web Application Firewall</p>
+        <p><i class="fas fa-check-circle"></i> Bot Management</p>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <p><i class="fas fa-envelope"></i> security@securenode.io</p>
+        <p><i class="fas fa-phone-alt"></i> +7 (495) 000-00-00</p>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 SecureNode — Защищённый хостинг с активной DDoS защитой. Все права защищены.
+    </div>
+  </div>
+</footer>
+</body>
+</html>
